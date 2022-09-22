@@ -2,20 +2,21 @@ import { Request, Response } from "express";
 import { usersDB } from "../db/users";
 
 export class GetUserByIdController {
-    getUser(request: Request, response: Response) {
-    
-    const userFilter = usersDB.filter(user => user.id == String(request.params.id))
+    getUserById(request: Request, response: Response) {
 
-    const userIdMap = userFilter.map(user=>{
-        return {
-            id: user.id,
-            name: user.name,
-            cpf: user.cpf,
-            email: user.email,
-            age: user.age
-        }
-    })
+        const {id} = request.params;
     
-    return response.json(userIdMap[0])
+    const user = usersDB.find(user => user.id === id)
+   
+    if (!user) {
+        return response.status(404).json({ error: "Usuário não encontrado" });
+      }
+  
+
+    return response.json(user.toJson());
+       
+    }
+
+    
   }
-}
+

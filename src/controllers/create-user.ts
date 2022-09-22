@@ -11,14 +11,7 @@ export class CreateUserController {
       
       usersDB.push(user);
   
-      return response.json({
-        id: user.id,
-        name: user.name,
-        cpf: user.cpf,
-        email: user.email,
-        age: user.age,
-        transactions: user.transactions
-      });
+      return response.json(user.toJson());
     }
   }
 

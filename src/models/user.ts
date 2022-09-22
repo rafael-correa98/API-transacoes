@@ -39,4 +39,16 @@ export class User{
         this._email = email;
         this._age = age;
     }
+
+    toJson(){
+        return {
+        id: this.id,
+        name: this.name,
+        cpf: this.cpf,
+        email: this.email,
+        age: this.age,
+        }
+    }
+
+
 }

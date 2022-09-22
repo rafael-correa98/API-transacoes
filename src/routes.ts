@@ -9,6 +9,6 @@ export default (app: Express) => {
     });
 
     app.post('/users', new CreateUserController().create)
-    app.get('/users/:id', new GetUserByIdController().getUser)
+    app.get('/users/:id', new GetUserByIdController().getUserById)
     app.get('/users', new GetAllUsersController().getAllUsers)
 };
