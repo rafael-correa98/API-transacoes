@@ -16,12 +16,13 @@ export class Transaction{
         return this._value;
     }
 
-    private _type: string
+    private _type: "income" | "outcome" 
     get type():string {
         return this._type
     }
 
-    constructor(title: string, value: number, type: string){
+
+    constructor(title: string, value: number, type: "income" | "outcome"){
         this._id = crypto.randomUUID();
         this._title = title;
         this._value = value;
@@ -29,4 +30,13 @@ export class Transaction{
     }
 
     
+    toJson(){
+        return {
+            id: this.id,
+            title: this.title,
+            value: this.value,
+            type: this.type,
+            }
+    }
+
 }
