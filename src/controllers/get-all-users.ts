@@ -4,54 +4,36 @@ import { usersDB } from "../db/users";
 export class GetAllUsersController {
     getAllUsers(request: Request, response: Response) {
     const { name, email, cpf } = request.query
-    if(name) {
-        let userFilter = usersDB.filter(user => user.name.toLocaleLowerCase() == String(name).toLocaleLowerCase()).map(user=>{
-            return {
-                id: user.id,
-                name: user.name,
-                cpf: user.cpf,
-                email: user.email,
-                age: user.age
-            }
-        })
-        return response.json(userFilter)
-    }
-    if(email) {
-        let userFilter = usersDB.filter(user => user.email.toLocaleLowerCase() == String(email).toLocaleLowerCase()).map(user=>{
-            return {
-                id: user.id,
-                name: user.name,
-                cpf: user.cpf,
-                email: user.email,
-                age: user.age
-            }
-        })
-        return response.json(userFilter)
-    }
-    if(cpf) {
-        let userFilter = usersDB.filter(user => user.cpf.toLocaleLowerCase() == String(cpf).toLocaleLowerCase()).map(user=>{
-            return {
-                id: user.id,
-                name: user.name,
-                cpf: user.cpf,
-                email: user.email,
-                age: user.age
-            }
-        })
-        return response.json(userFilter)
-    }
-    
 
-    const userMap = usersDB.map(user=>{
-        return {
-            id: user.id,
-            name: user.name,
-            cpf: user.cpf,
-            email: user.email,
-            age: user.age
-        }
-    })
+    let users = usersDB.map(user => user.toJson())
+
+    if(name) {
+        users = users.filter(user => {
+            return user.name.
+            toLowerCase()
+            .includes(name.toString().toLowerCase())
+        })
+        return response.json(users)
+    }
+
+    if(email) {
+        users = users.filter(user => {
+            return user.email.
+            toLowerCase()
+            .includes(email.toString().toLowerCase())
+        })
+        return response.json(users)
+    }
+
+    if(cpf) {
+        users = users.filter(user => {
+            return user.cpf.
+            toLowerCase()
+            .includes(cpf.toString().toLowerCase())
+        })
+        return response.json(users)
+    }
     
-    return response.json(userMap)
+    return response.json(users)
   }
 }
