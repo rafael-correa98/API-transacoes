@@ -5,7 +5,8 @@ import { GetAllUsersController } from "./controllers/get-all-users"
 import { DeleteUserController } from "./controllers/delete-user";
 import { UpdateUserController } from "./controllers/update-user";
 import { CreateTransactionController } from "./controllers/create-transactions"
-import {GetAllTransactionsController} from "./controllers/get-all-transactions"
+import { GetAllTransactionsController } from "./controllers/get-all-transactions"
+import { GetTransactionByIdController } from './controllers/get-transaction-by-id'
 
 export default (app: Express) => {
     app.get('/', (request, response) => {
@@ -18,6 +19,6 @@ export default (app: Express) => {
     app.delete('/users/:id', new DeleteUserController().delete)
     app.put('/users/:id', new UpdateUserController().update)
     app.post('/user/:userId/transactions', new CreateTransactionController().create)
-    app.get('/user/:userId/transactions/:id', new CreateTransactionController().create)
+    app.get('/user/:userId/transactions/:id', new GetTransactionByIdController().getTransactionsById)
     app.get('/user/:userId/transactions', new GetAllTransactionsController().getAllTransactions)
 };
