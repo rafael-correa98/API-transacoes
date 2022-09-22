@@ -4,9 +4,9 @@ import { GetUserByIdController } from "./controllers/get-user-by-id";
 import { GetAllUsersController } from "./controllers/get-all-users"
 import { DeleteUserController } from "./controllers/delete-user";
 import { UpdateUserController } from "./controllers/update-user";
-import { CreateTransactionController } from "./controllers/create-transactions"
-import { GetAllTransactionsController } from "./controllers/get-all-transactions"
-import { GetTransactionByIdController } from './controllers/get-transaction-by-id'
+import { CreateTransactionController } from "./controllers/create-transactions";
+import {GetAllTransactionsController} from "./controllers/get-all-transactions";
+import {GetTransactionByIdController} from "./controllers/get-transaction-by-id";
 
 export default (app: Express) => {
     app.get('/', (request, response) => {
