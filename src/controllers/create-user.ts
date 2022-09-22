@@ -14,10 +14,3 @@ export class CreateUserController {
       return response.json(user.toJson());
     }
   }
-
-  // {
-  //   "name": "Rafael",
-  //   "cpf": '923.008.770-07',
-  //   "email": "rafael@gmail",
-  //   "age": 24
-  // }
