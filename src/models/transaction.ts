@@ -36,7 +36,7 @@ export class Transaction{
             title: this.title,
             value: this.value,
             type: this.type,
-            }
+        }
     }
 
 }
