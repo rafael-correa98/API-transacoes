@@ -50,5 +50,17 @@ export class User{
         }
     }
 
+    updateInformation(name: string, cpf: string, email: string) {
+        if (!name) throw new Error("Nome inválido");
+        if (!cpf) throw new Error("Cpf inválido");
+        if (!email) throw new Error("Email inválido");
+    
+
+    
+        this._name = name;
+        this._cpf = cpf;
+        this._email = email;
+      }
+
 
 }

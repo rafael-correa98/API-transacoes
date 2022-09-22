@@ -27,4 +27,6 @@ export class Transaction{
         this._value = value;
         this._type = type;
     }
+
+    
 }
