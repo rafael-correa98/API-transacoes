@@ -10,8 +10,6 @@ export class GetTransactionByIdController{
       .map(transaction => transaction.toJson())
       .find((transaction)=> transaction.id === id)
     
-      
-
       return response.json(transaction)
     }
 }

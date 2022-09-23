@@ -7,7 +7,6 @@ export class GetAllTransactionsController {
     
     const userIndex = usersDB.findIndex(user => user.id === userId)
 
-    
     let transactions = usersDB[userIndex].transactions.map(transaction => transaction.toJson())
     
     const valueIncome = transactions.filter(transaction => transaction.type === "income")
@@ -28,7 +27,9 @@ export class GetAllTransactionsController {
       total: valueIncome - valueOutcome
     }
 
-    const data = [transactions, balance]
+    const data = {
+      transactions, 
+      balance}
     
     return response.json(data)
   }

@@ -9,8 +9,7 @@ export class UpdateTransactionController {
 
     const userIndex = usersDB.findIndex(user => user.id === userId)
       
-      let transaction = usersDB[userIndex].transactions
-      .map(transaction => transaction.toJson())
+      const transaction = usersDB[userIndex].transactions
       .find((transaction)=> transaction.id === id)
     
         if (!transaction) {
