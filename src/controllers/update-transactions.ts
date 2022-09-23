@@ -23,7 +23,5 @@ export class UpdateTransactionController {
         }
 
       return response.json(transaction)
-
-    // return response.json(user.toJson());
   }
 }

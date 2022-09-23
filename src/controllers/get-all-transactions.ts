@@ -2,8 +2,10 @@ import { Request, Response } from "express";
 import { usersDB } from "../db/users";
 
 export class GetAllTransactionsController {
-    getAllTransactions(request: Request, response: Response) {
+  getAllTransactions(request: Request, response: Response) {
     const {userId} = request.params
+
+    const { title, type } = request.query
     
     const userIndex = usersDB.findIndex(user => user.id === userId)
 
@@ -27,10 +29,30 @@ export class GetAllTransactionsController {
       total: valueIncome - valueOutcome
     }
 
+    
+    if(title) {
+      transactions = transactions.filter(transaction => {
+        return transaction.title
+        .toLowerCase()
+        .includes(title.toString().toLowerCase())
+      })
+      return response.json(transactions)
+    }
+    
+    if(type) {
+      transactions = transactions.filter(transaction => {
+        return transaction.type
+        .toLowerCase()
+        .includes(type.toString().toLowerCase())
+      })
+      return response.json(transactions)
+    }
+    
     const data = {
       transactions, 
-      balance}
-    
+      balance
+    }
+
     return response.json(data)
   }
 }
