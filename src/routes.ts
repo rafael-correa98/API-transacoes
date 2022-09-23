@@ -7,6 +7,7 @@ import { UpdateUserController } from "./controllers/update-user";
 import { CreateTransactionController } from "./controllers/create-transactions";
 import {GetAllTransactionsController} from "./controllers/get-all-transactions";
 import {GetTransactionByIdController} from "./controllers/get-transaction-by-id";
+import { UpdateTransactionController } from "./controllers/update-transactions";
 
 export default (app: Express) => {
     app.get('/', (request, response) => {
@@ -21,4 +22,5 @@ export default (app: Express) => {
     app.post('/user/:userId/transactions', new CreateTransactionController().create)
     app.get('/user/:userId/transactions/:id', new GetTransactionByIdController().getTransactionsById)
     app.get('/user/:userId/transactions', new GetAllTransactionsController().getAllTransactions)
+    app.put('/user/:userId/transactions/:id', new UpdateTransactionController().updateTransaction)
 };

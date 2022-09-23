@@ -39,4 +39,11 @@ export class Transaction{
         }
     }
 
+    updateInformation(title: string) {
+        if (!title) throw new Error("Título inválido");
+    
+        this._title = title;
+      }
+
+
 }
