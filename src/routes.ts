@@ -8,6 +8,7 @@ import { CreateTransactionController } from "./controllers/create-transactions";
 import {GetAllTransactionsController} from "./controllers/get-all-transactions";
 import {GetTransactionByIdController} from "./controllers/get-transaction-by-id";
 import { UpdateTransactionController } from "./controllers/update-transactions";
+import { DeleteTransactionController } from "./controllers/delete-transaction";
 
 export default (app: Express) => {
     app.get('/', (request, response) => {
@@ -23,4 +24,5 @@ export default (app: Express) => {
     app.get('/user/:userId/transactions/:id', new GetTransactionByIdController().getTransactionsById)
     app.get('/user/:userId/transactions', new GetAllTransactionsController().getAllTransactions)
     app.put('/user/:userId/transactions/:id', new UpdateTransactionController().updateTransaction)
+    app.delete('/user/:userId/transactions/:id', new DeleteTransactionController().deleteTransaction)
 };
