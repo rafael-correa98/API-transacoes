@@ -11,9 +11,21 @@ export class CreateTransactionController {
 
         const transaction = new Transaction(title, value, type);
 
-        const userIndex = usersDB.findIndex(user => user.id === userId)
+        const user = usersDB.find(user => user.id === userId)
+            
+        if (!user) {
+            return response.status(404).json({ error: "Growdever não encontrado" });
+        }
+    
+        try {
+            user.newTransactions(transaction);
+        } catch (error: any) {
+            return response.status(400).json({ error: error.message });
+        }
   
-        usersDB[userIndex].transactions.push(transaction)
+        // usersDB[userIndex].transactions.push(transaction)
+
+
 
         return response.json(transaction.toJson())
 

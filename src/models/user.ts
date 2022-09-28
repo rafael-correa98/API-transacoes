@@ -40,6 +40,12 @@ export class User{
         this._age = age;
     }
 
+     
+    newTransactions(transaction: Transaction){
+        this._transactions.push(transaction);
+    }
+
+
     toJson(){
         return {
         id: this.id,
@@ -54,9 +60,7 @@ export class User{
         if (!name) throw new Error("Nome inválido");
         if (!cpf) throw new Error("Cpf inválido");
         if (!email) throw new Error("Email inválido");
-    
-
-    
+       
         this._name = name;
         this._cpf = cpf;
         this._email = email;

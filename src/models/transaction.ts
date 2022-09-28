@@ -29,7 +29,6 @@ export class Transaction{
         this._type = type;
     }
 
-    
     toJson(){
         return {
             id: this.id,
