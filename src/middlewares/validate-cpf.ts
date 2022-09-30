@@ -17,7 +17,7 @@ export class ValidateCpfMiddleware {
   }
 
   verifyCpfExists(request: Request, response: Response, next: NextFunction) {
-    const { cpf } = request.params;
+    const { cpf } = request.body;
 
     if (
       usersDB.some(
