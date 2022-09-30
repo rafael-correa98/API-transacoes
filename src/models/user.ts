@@ -29,7 +29,7 @@ export class User{
 
     private _transactions: Transaction[] = []
     get transactions(): Transaction[] {
-        return this._transactions;
+        return [...this._transactions];
     }
 
     constructor(name: string, cpf: string, email: string, age: number){

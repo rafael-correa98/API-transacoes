@@ -11,6 +11,7 @@ import { UpdateTransactionController } from "./controllers/update-transactions";
 import { DeleteTransactionController } from "./controllers/delete-transaction";
 import { ValidateCpfMiddleware } from './middlewares/validate-cpf'
 import { ValidateParameterUserMiddleware } from "./middlewares/validate-users";
+import { verifyUserTransactionMiddleware } from "./middlewares/verify-user-transaction";
 
 export default (app: Express) => {
     app.get('/', (request, response) => {
@@ -28,9 +29,9 @@ export default (app: Express) => {
     app.get('/users', new GetAllUsersController().getAllUsers)
     app.delete('/users/:id', new DeleteUserController().delete)
     app.put('/users/:id', new UpdateUserController().update)
-    app.post('/user/:userId/transactions', new CreateTransactionController().create)
-    app.get('/user/:userId/transactions/:id', new GetTransactionByIdController().getTransactionsById)
-    app.get('/user/:userId/transactions', new GetAllTransactionsController().getAllTransactions)
-    app.put('/user/:userId/transactions/:id', new UpdateTransactionController().updateTransaction)
-    app.delete('/user/:userId/transactions/:id', new DeleteTransactionController().deleteTransaction)
+    app.post('/user/:userId/transactions', new verifyUserTransactionMiddleware().verifyUser,new CreateTransactionController().create)
+    app.get('/user/:userId/transactions/:id', new verifyUserTransactionMiddleware().verifyUser,new GetTransactionByIdController().getTransactionsById)
+    app.get('/user/:userId/transactions', new verifyUserTransactionMiddleware().verifyUser,new GetAllTransactionsController().getAllTransactions)
+    app.put('/user/:userId/transactions/:id', new verifyUserTransactionMiddleware().verifyUser,new UpdateTransactionController().updateTransaction)
+    app.delete('/user/:userId/transactions/:id', new verifyUserTransactionMiddleware().verifyUser,new DeleteTransactionController().deleteTransaction)
 };
