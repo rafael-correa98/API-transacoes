@@ -15,11 +15,19 @@ export class ValidateCpfMiddleware {
 
     
   }
-  onlyCPF(request: Request, response: Response, nest: NextFunction){
-    const {cpf} = request.body;
 
-    usersDB.forEach(user =>{ 
-        usersDB.includes() 
-    })
+  verifyCpfExists(request: Request, response: Response, next: NextFunction) {
+    const { cpf } = request.params;
+
+    if (
+      usersDB.some(
+        (user) =>
+          user.cpf === (cpf as string).replace(/\W/g, "")
+      )
+    ) {
+      return response.status(400).json({ error: "CPF já cadastrado" });
+    }
+
+    return next();
   }
 }

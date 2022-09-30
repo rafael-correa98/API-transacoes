@@ -9,13 +9,21 @@ import {GetAllTransactionsController} from "./controllers/get-all-transactions";
 import {GetTransactionByIdController} from "./controllers/get-transaction-by-id";
 import { UpdateTransactionController } from "./controllers/update-transactions";
 import { DeleteTransactionController } from "./controllers/delete-transaction";
+import { ValidateCpfMiddleware } from './middlewares/validate-cpf'
+import { ValidateParameterUserMiddleware } from "./middlewares/validate-users";
 
 export default (app: Express) => {
     app.get('/', (request, response) => {
         return response.send('OK');
     });
 
-    app.post('/users', new CreateUserController().create)
+    app.post('/users',
+     new ValidateParameterUserMiddleware().validateUser,
+     new ValidateParameterUserMiddleware().validateSizeUser,
+     new ValidateCpfMiddleware().validateCpf,
+     new ValidateCpfMiddleware().verifyCpfExists,
+     new CreateUserController().create,
+    )
     app.get('/users/:id', new GetUserByIdController().getUserById)
     app.get('/users', new GetAllUsersController().getAllUsers)
     app.delete('/users/:id', new DeleteUserController().delete)

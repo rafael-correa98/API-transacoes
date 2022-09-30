@@ -29,7 +29,7 @@ export class GetAllUsersController {
         users = users.filter(user => {
             return user.cpf.
             toLowerCase()
-            .includes(cpf.toString().toLowerCase())
+            .includes(cpf.toString())
         })
         return response.json(users)
     }
