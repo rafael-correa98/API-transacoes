@@ -17,9 +17,9 @@ export class CreateTransactionController {
             return response.status(404).json({ error: "Growdever não encontrado" });
         }
         
-        try { console.log(user)
+        try { 
             user.newTransactions(transaction);
-            console.log(user)
+  
         } catch (error: any) {
             return response.status(400).json({ error: error.message });
         }

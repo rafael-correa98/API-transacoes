@@ -17,12 +17,12 @@ export class ValidateCpfMiddleware {
   }
 
   verifyCpfExists(request: Request, response: Response, next: NextFunction) {
-    const { cpf } = request.body;
+    const { cpf } = request.body;    
 
     if (
       usersDB.some(
         (user) =>
-          user.cpf === (cpf as string).replace(/\W/g, "")
+          user.cpf.replace(/\W/g, "") === (cpf as string).replace(/\W/g, "")
       )
     ) {
       return response.status(400).json({ error: "CPF já cadastrado" });
